@@ -28,5 +28,21 @@ public class StudentService implements IStudentService{
         return (List<Student>) studentRepository.findAll();
     }
 
+    @Override
+    public Student updateStudent(int id, Student student) {
+        if(studentRepository.findById(id).isPresent()){
+            Student studentExist = studentRepository.findById(id).get();
+            studentExist.setStudentName(student.getStudentName());
+            studentExist.setStudentSurname(student.getStudentSurname());
+            studentExist.setStudentAddress(student.getStudentAddress());
+            studentExist.setStudentPhoneNumber(student.getStudentPhoneNumber());
+            studentExist.setStudentEmail(student.getStudentEmail());
+
+            Student student1 = studentRepository.save(studentExist);
+            return new Student(student1.getStudentId(),student1.getStudentSurname(),student1.getStudentAddress(),student1.getStudentPhoneNumber(),student1.getStudentEmail());
+        }
+        return null;
+    }
+
 
 }

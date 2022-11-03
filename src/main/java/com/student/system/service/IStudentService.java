@@ -12,6 +12,8 @@ public interface IStudentService {
     public void deleteStudent(int id);
 
     List<Student> getAll();
+    Student updateStudent(int id,Student student);
+
 
 
 }
