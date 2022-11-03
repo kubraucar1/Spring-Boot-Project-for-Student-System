@@ -5,6 +5,9 @@ import com.student.system.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,4 +34,14 @@ public class Controller {
     public List<Student> getAll(){
         return (List<Student>) studentService.getAll();
     }
+
+
+    @PutMapping(value = "/update/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Student> updateStudent(@PathVariable(value = "id") int id,
+                                                 @RequestBody Student student){
+        return new ResponseEntity<>(studentService.updateStudent(id,student),HttpStatus.OK);
+    }
+
+
 }
