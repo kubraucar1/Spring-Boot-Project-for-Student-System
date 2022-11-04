@@ -43,5 +43,11 @@ public class Controller {
         return new ResponseEntity<>(studentService.updateStudent(id,student),HttpStatus.OK);
     }
 
+    @PutMapping(value = "/update2/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public String  updateStudent2(@PathVariable(value = "id") int id,
+                                                 @RequestBody Student student){
+        return "Student has been updated";
+    }
 
 }

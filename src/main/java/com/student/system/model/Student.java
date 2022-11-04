@@ -20,22 +20,9 @@ public class Student {
     private String studentPhoneNumber;
     private String studentEmail;
 
+public Student(){
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public Student() {
-
-    }
+}
 
     public Student(String studentName, String studentSurname, int studentId, String studentAddress, String studentPhoneNumber, String studentEmail) {
         this.studentName = studentName;
@@ -44,6 +31,9 @@ public class Student {
         this.studentAddress = studentAddress;
         this.studentPhoneNumber = studentPhoneNumber;
         this.studentEmail = studentEmail;
+    }
+
+    public Student(int studentId, String studentSurname, String studentAddress, String studentPhoneNumber, String studentEmail) {
     }
 
     public String getStudentName() {
