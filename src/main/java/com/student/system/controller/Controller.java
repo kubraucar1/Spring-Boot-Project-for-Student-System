@@ -46,7 +46,7 @@ public class Controller {
     @PutMapping(value = "/update2/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String  updateStudent2(@PathVariable(value = "id") int id,
-                                                 @RequestBody Student student){
+                                  @RequestBody Student student){
         studentService.updateStudent(id,student);
         return "Student has been updated";
     }

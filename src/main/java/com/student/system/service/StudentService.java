@@ -19,8 +19,12 @@ public class StudentService implements IStudentService{
 
     @Override
     public void deleteStudent(int id) {
+        if(studentRepository.findById(id).isPresent())
         studentRepository.deleteById(id);
 
+        else {
+            throw new RuntimeException("there is not a student with this Id");
+        }
     }
 
     @Override
