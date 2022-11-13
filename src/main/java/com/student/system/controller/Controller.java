@@ -35,7 +35,7 @@ public class Controller {
         return (List<Student>) studentService.getAll();
     }
 
-
+//there are two different update verison
     @PutMapping(value = "/update/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Student> updateStudent(@PathVariable(value = "id") int id,
@@ -47,6 +47,7 @@ public class Controller {
     @ResponseStatus(HttpStatus.OK)
     public String  updateStudent2(@PathVariable(value = "id") int id,
                                                  @RequestBody Student student){
+        studentService.updateStudent(id,student);
         return "Student has been updated";
     }
 
