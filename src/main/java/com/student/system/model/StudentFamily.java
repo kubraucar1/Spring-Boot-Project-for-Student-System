@@ -26,6 +26,9 @@ public class StudentFamily {
     private String parentAddress;
 
 
+    @OneToOne(mappedBy = "studentFamily")
+    private Student student;
+
 
 
 }
