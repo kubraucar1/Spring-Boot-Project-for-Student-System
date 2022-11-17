@@ -1,6 +1,8 @@
 package com.student.system.controller;
 
 import com.student.system.model.Student;
+import com.student.system.model.StudentFamily;
+import com.student.system.service.IStudentFamilyService;
 import com.student.system.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class Controller {
     @Autowired
     private IStudentService studentService;
+    private IStudentFamilyService studentFamilyService;
 
     @PostMapping("/add")
     public String addStudent(@RequestBody  Student student){
@@ -50,5 +53,16 @@ public class Controller {
         studentService.updateStudent(id,student);
         return "Student has been updated";
     }
-
+    @PutMapping("/add/parent/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String addStudentParent(@PathVariable(value = "id")
+                                       int id, @RequestBody StudentFamily studentFamily){
+        studentFamilyService.addFamily(id,studentFamily);
+        return "Student family has been added";
+    }
+   /* @GetMapping("getAll/parent")
+    public List<StudentFamily> getAllFamily(){
+        return (List<StudentFamily>) studentFamilyService.getAll();
+    }
+*/
 }

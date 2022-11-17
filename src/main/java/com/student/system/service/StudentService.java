@@ -41,10 +41,11 @@ public class StudentService implements IStudentService{
             studentExist.setStudentAddress(student.getStudentAddress());
             studentExist.setStudentPhoneNumber(student.getStudentPhoneNumber());
             studentExist.setStudentEmail(student.getStudentEmail());
+            studentExist.setStudentFamily(student.getStudentFamily());
 
             Student student1 = studentRepository.save(studentExist);
             return new Student(student1.getStudentId(), student1.getStudentSurname(), student1.getStudentAddress(),
-                    student1.getStudentPhoneNumber(), student1.getStudentEmail());
+                    student1.getStudentPhoneNumber(), student1.getStudentEmail(),student1.getStudentFamily());
         }
         else
             return student;

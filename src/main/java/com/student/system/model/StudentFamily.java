@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -11,25 +12,20 @@ import javax.persistence.*;
 @Entity   //we are working on a gradle project so we had added dependencies to gradlew.bat before.
 @Data
 @NoArgsConstructor
+@Transactional
 @AllArgsConstructor
+@Table(name = "student_family")
 public class StudentFamily {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "parent_id")
+    private  int parentId;
 
-    long parentId;
-
-    String parentName;
-    String parentPhone;
-    String parentAddress;
+    private  String parentName;
+    private  String parentPhone;
+    private String parentAddress;
 
 
-    @Override
-    public String toString() {
-        return "StudentFamily{" +
-                "parentId=" + parentId +
-                ", parentName='" + parentName + '\'' +
-                ", parentPhone='" + parentPhone + '\'' +
-                ", parentAddress='" + parentAddress + '\'' +
-                '}';
-    }
+
+
 }
