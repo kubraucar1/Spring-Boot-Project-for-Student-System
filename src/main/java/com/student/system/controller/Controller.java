@@ -3,12 +3,9 @@ package com.student.system.controller;
 import com.student.system.model.Student;
 import com.student.system.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/student")
@@ -30,5 +27,17 @@ public class Controller {
     @GetMapping("/getAll")
     public List<Student> getAll(){
         return (List<Student>) studentService.getAll();
+    }
+
+    @PutMapping("/update/{id}")
+    public Student updateStudent(@PathVariable int id,Student student){
+
+        return studentService.updateStudent(id,student);
+
+    }
+    @GetMapping("/random")
+    public Student randomStudent(){
+       var result= studentService.randomStudent();
+       return result;
     }
 }

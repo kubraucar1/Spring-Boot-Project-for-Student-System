@@ -4,7 +4,6 @@ import com.student.system.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface IStudentService {
@@ -12,6 +11,11 @@ public interface IStudentService {
     public void deleteStudent(int id);
 
     List<Student> getAll();
+
+    Student updateStudent(int id,Student student);
+    Student randomStudent();
+
+
 
 
 }
