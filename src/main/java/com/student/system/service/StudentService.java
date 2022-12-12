@@ -4,7 +4,6 @@ import com.student.system.model.Student;
 import com.student.system.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Random;
 
 import java.util.List;
 
@@ -27,22 +26,6 @@ public class StudentService implements IStudentService{
     @Override
     public List<Student> getAll() {
         return (List<Student>) studentRepository.findAll();
-    }
-
-    @Override
-    public Student updateStudent(int id,Student student) {
-
-        student = studentRepository.findStudentById(id);
-
-        return studentRepository.save(student);
-    }
-
-    @Override
-    public Student randomStudent() {
-        List<Student> allStudent = (List<Student>) studentRepository.findAll();
-        Random random= new Random();
-        var selectedStudent = allStudent.get(random.nextInt(allStudent.size()));
-        return selectedStudent;
     }
 
 

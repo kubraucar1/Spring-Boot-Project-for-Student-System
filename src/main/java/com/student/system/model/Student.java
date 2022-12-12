@@ -2,109 +2,38 @@ package com.student.system.model;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Transactional
+@Table(name = "student")
+@AllArgsConstructor
 public class Student {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @Column(name = "student_id")
     private int studentId;
     private String studentName;
     private String studentSurname;
-
     private String studentAddress;
     private String studentPhoneNumber;
     private String studentEmail;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_student_family")
+    private StudentFamily studentFamily;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    public Student() {
-
+    public Student(int studentId, String studentSurname, String studentAddress, String studentPhoneNumber, String studentEmail, StudentFamily studentFamily) {
     }
-
-    public Student(String studentName, String studentSurname, int studentId, String studentAddress, String studentPhoneNumber, String studentEmail) {
-        this.studentName = studentName;
-        this.studentSurname = studentSurname;
-        this.studentId = studentId;
-        this.studentAddress = studentAddress;
-        this.studentPhoneNumber = studentPhoneNumber;
-        this.studentEmail = studentEmail;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public String getStudentSurname() {
-        return studentSurname;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public String getStudentAddress() {
-        return studentAddress;
-    }
-
-    public String getStudentPhoneNumber() {
-        return studentPhoneNumber;
-    }
-
-    public String getStudentEmail() {
-        return studentEmail;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public void setStudentSurname(String studentSurname) {
-        this.studentSurname = studentSurname;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public void setStudentAddress(String studentAddress) {
-        this.studentAddress = studentAddress;
-    }
-
-    public void setStudentPhoneNumber(String studentPhoneNumber) {
-        this.studentPhoneNumber = studentPhoneNumber;
-    }
-
-    public void setStudentEmail(String studentEmail) {
-        this.studentEmail = studentEmail;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "studentName='" + studentName + '\'' +
-                ", studentSurname='" + studentSurname + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", studentAddress='" + studentAddress + '\'' +
-                ", studentPhoneNumber='" + studentPhoneNumber + '\'' +
-                ", studentEmail='" + studentEmail + '\'' +
-                '}';
-    }
-
-
 }
