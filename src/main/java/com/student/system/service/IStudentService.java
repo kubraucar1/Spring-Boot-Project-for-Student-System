@@ -10,12 +10,14 @@ public interface IStudentService {
     public Student saveStudent(Student student);
     public void deleteStudent(int id);
 
-    List<Student> getAll();
+
     Student updateStudent(int id,Student student);
 
 
-    Student updateStudent(int id,Student student);
+    List<Student> getStudents();
+
     Student randomStudent();
+    List<Student> getAllStudents();
 
 
 

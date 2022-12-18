@@ -1,6 +1,7 @@
 package com.student.system.controller;
 
 import com.student.system.model.Student;
+import com.student.system.repository.IStudentRepository;
 import com.student.system.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
@@ -15,7 +16,15 @@ import java.util.Optional;
 public class Controller {
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private IStudentRepository studentRepository;
 
+
+    @GetMapping("/get")
+    public List<Student> getAll(){
+        List<Student> allStudents = studentService.getAllStudents();
+        return allStudents;
+    }
     @PostMapping("/add")
     public String addStudent(@RequestBody  Student student){
         studentService.saveStudent(student);
@@ -27,8 +36,10 @@ public class Controller {
         return "student has been deleted!";
     }
 
-    @GetMapping("/getAll")
-    public List<Student> getAll(){
-        return (List<Student>) studentService.getAll();
+
+    @GetMapping("/random")
+    public Student randomStudent(){
+        Student selectedStudentByRandom = studentService.randomStudent();
+        return selectedStudentByRandom;
     }
 }

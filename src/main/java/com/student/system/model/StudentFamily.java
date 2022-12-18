@@ -1,6 +1,7 @@
 package com.student.system.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class StudentFamily {
     private  String parentPhone;
     private String parentAddress;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "studentFamily")
     private Student student;
 
