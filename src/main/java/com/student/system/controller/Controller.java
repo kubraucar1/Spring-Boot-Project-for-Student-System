@@ -2,14 +2,15 @@ package com.student.system.controller;
 
 import com.student.system.model.Student;
 import com.student.system.repository.IStudentRepository;
+import com.student.system.response.ApiRespone;
 import com.student.system.service.IStudentService;
+import com.student.system.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/student")
@@ -18,6 +19,8 @@ public class Controller {
     private IStudentService studentService;
     @Autowired
     private IStudentRepository studentRepository;
+    @Autowired
+    private StudentService studentServiceImpl;
 
 
     @GetMapping("/get")
@@ -41,5 +44,11 @@ public class Controller {
     public Student randomStudent(){
         Student selectedStudentByRandom = studentService.randomStudent();
         return selectedStudentByRandom;
+    }
+
+    @GetMapping("/pagination/{page}/{pageSize}")
+    public ApiRespone<Page<Student>> getUsersWithPaginationAndSorting(@PathVariable int page, @PathVariable int pageSize ){
+        Page<Student>  students =  studentServiceImpl.findusersWithPagination(page,pageSize);
+        return new ApiRespone<>(students.getSize(), students);
     }
 }
