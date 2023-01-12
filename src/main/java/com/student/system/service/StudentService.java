@@ -3,7 +3,12 @@ package com.student.system.service;
 import com.student.system.model.Student;
 import com.student.system.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.Random;
 import java.util.List;
 
@@ -22,6 +27,11 @@ public class StudentService implements IStudentService{
         studentRepository.deleteById(id);
 
     }
+    public Page<Student> findusersWithPagination(int page, int pageSize) {
+        Page<Student> students = studentRepository.findAll(PageRequest.of(page, pageSize));
+        return students;
+    }
+
     @Override
     public Student updateStudent(int id, Student student) {
         if (studentRepository.findById(id).isPresent()) {
