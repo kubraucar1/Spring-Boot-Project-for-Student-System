@@ -1,5 +1,6 @@
 package com.student.system.service;
 
+import com.student.system.exceptions.NotExistException;
 import com.student.system.model.Student;
 import com.student.system.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,10 @@ public class StudentService implements IStudentService{
                     student1.getStudentPhoneNumber(), student1.getStudentEmail(),student1.getStudentFamily());
         }
         else
-            return student;
+        {
+            throw new NotExistException();
+        }
+
 
     }
 
